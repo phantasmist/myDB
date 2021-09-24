@@ -1,0 +1,13 @@
+C:\Users\phantasmist\source\repos\myDB\myDB\bin\Debug\myDB.exe.config
+C:\Users\phantasmist\source\repos\myDB\myDB\bin\Debug\myDB.exe
+C:\Users\phantasmist\source\repos\myDB\myDB\bin\Debug\myDB.pdb
+C:\Users\phantasmist\source\repos\myDB\myDB\obj\Debug\myDB.csproj.AssemblyReference.cache
+C:\Users\phantasmist\source\repos\myDB\myDB\obj\Debug\myDB.Form1.resources
+C:\Users\phantasmist\source\repos\myDB\myDB\obj\Debug\myDB.Properties.Resources.resources
+C:\Users\phantasmist\source\repos\myDB\myDB\obj\Debug\myDB.csproj.GenerateResource.cache
+C:\Users\phantasmist\source\repos\myDB\myDB\obj\Debug\myDB.csproj.CoreCompileInputs.cache
+C:\Users\phantasmist\source\repos\myDB\myDB\obj\Debug\myDB.exe
+C:\Users\phantasmist\source\repos\myDB\myDB\obj\Debug\myDB.pdb
+C:\Users\phantasmist\source\repos\myDB\myDB\bin\Debug\myLibrary.dll
+C:\Users\phantasmist\source\repos\myDB\myDB\bin\Debug\myLibrary.pdb
+C:\Users\phantasmist\source\repos\myDB\myDB\obj\Debug\myDB.csproj.CopyComplete

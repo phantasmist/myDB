@@ -174,7 +174,7 @@ namespace myDB
 
         private void sbLabel2_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            sbLabel2.Text = e.ClickedItem.Text;
+            sbLabel2.Text = e.ClickedItem.Text; //
         }
     }
 }

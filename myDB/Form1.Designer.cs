@@ -31,38 +31,41 @@ namespace myDB
         {
             this.components = new System.ComponentModel.Container();
             this.dbGrid = new System.Windows.Forms.DataGridView();
-            this.mnPopUp = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pmnAddColumn = new System.Windows.Forms.ToolStripMenuItem();
-            this.pmnAddRow = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnMain = new System.Windows.Forms.MenuStrip();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnAddColumn = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnAddRow = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnPopUpGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addRowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addColumnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pmndbUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.pmndbInsert = new System.Windows.Forms.ToolStripMenuItem();
             this.tbInput = new System.Windows.Forms.TextBox();
-            this.mnPopUp2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.text1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.text2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnPopUpSQL = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.executeSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sbLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sbLabel2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.mnOpenF = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMigration = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSave = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sbLabel2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.mnExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRowToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addColumnToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSqlExecute = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dbGrid)).BeginInit();
-            this.mnPopUp.SuspendLayout();
-            this.mnMain.SuspendLayout();
-            this.mnPopUp2.SuspendLayout();
+            this.mnPopUpGrid.SuspendLayout();
+            this.mnPopUpSQL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // dbGrid
@@ -71,109 +74,79 @@ namespace myDB
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dbGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dbGrid.ContextMenuStrip = this.mnPopUp;
-            this.dbGrid.Location = new System.Drawing.Point(3, 3);
+            this.dbGrid.ContextMenuStrip = this.mnPopUpGrid;
+            this.dbGrid.Location = new System.Drawing.Point(0, 3);
             this.dbGrid.Name = "dbGrid";
             this.dbGrid.RowHeadersWidth = 51;
             this.dbGrid.RowTemplate.Height = 27;
-            this.dbGrid.Size = new System.Drawing.Size(722, 191);
+            this.dbGrid.Size = new System.Drawing.Size(738, 202);
             this.dbGrid.TabIndex = 0;
             // 
-            // mnPopUp
+            // mnPopUpGrid
             // 
-            this.mnPopUp.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.mnPopUp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pmnAddColumn,
-            this.pmnAddRow});
-            this.mnPopUp.Name = "mnPopUp";
-            this.mnPopUp.Size = new System.Drawing.Size(166, 52);
+            this.mnPopUpGrid.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnPopUpGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addRowToolStripMenuItem,
+            this.addColumnToolStripMenuItem,
+            this.pmndbUpdate,
+            this.pmndbInsert});
+            this.mnPopUpGrid.Name = "mnPopUp";
+            this.mnPopUpGrid.Size = new System.Drawing.Size(211, 128);
             // 
-            // pmnAddColumn
+            // addRowToolStripMenuItem
             // 
-            this.pmnAddColumn.Name = "pmnAddColumn";
-            this.pmnAddColumn.Size = new System.Drawing.Size(165, 24);
-            this.pmnAddColumn.Text = "Add Column";
-            this.pmnAddColumn.Click += new System.EventHandler(this.pmnAddColumn_Click);
+            this.addRowToolStripMenuItem.Name = "addRowToolStripMenuItem";
+            this.addRowToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.addRowToolStripMenuItem.Text = "Add Row";
             // 
-            // pmnAddRow
+            // addColumnToolStripMenuItem
             // 
-            this.pmnAddRow.Name = "pmnAddRow";
-            this.pmnAddRow.Size = new System.Drawing.Size(165, 24);
-            this.pmnAddRow.Text = "Add Row";
-            this.pmnAddRow.Click += new System.EventHandler(this.pmnAddRow_Click);
+            this.addColumnToolStripMenuItem.Name = "addColumnToolStripMenuItem";
+            this.addColumnToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.addColumnToolStripMenuItem.Text = "Add Column";
             // 
-            // mnMain
+            // pmndbUpdate
             // 
-            this.mnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mnMain.Dock = System.Windows.Forms.DockStyle.None;
-            this.mnMain.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.mnMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
-            this.mnMain.Location = new System.Drawing.Point(0, 0);
-            this.mnMain.Name = "mnMain";
-            this.mnMain.Size = new System.Drawing.Size(103, 28);
-            this.mnMain.TabIndex = 1;
-            this.mnMain.Text = "mainMenu";
+            this.pmndbUpdate.Name = "pmndbUpdate";
+            this.pmndbUpdate.Size = new System.Drawing.Size(210, 24);
+            this.pmndbUpdate.Text = "DB Update";
+            this.pmndbUpdate.Click += new System.EventHandler(this.pmndbUpdate_Click);
             // 
-            // editToolStripMenuItem
+            // pmndbInsert
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnAddColumn,
-            this.mnAddRow});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // mnAddColumn
-            // 
-            this.mnAddColumn.Name = "mnAddColumn";
-            this.mnAddColumn.Size = new System.Drawing.Size(179, 26);
-            this.mnAddColumn.Text = "Add Column";
-            this.mnAddColumn.Click += new System.EventHandler(this.mnAddColumn_Click);
-            // 
-            // mnAddRow
-            // 
-            this.mnAddRow.Name = "mnAddRow";
-            this.mnAddRow.Size = new System.Drawing.Size(179, 26);
-            this.mnAddRow.Text = "Add Row";
-            this.mnAddRow.Click += new System.EventHandler(this.mnAddRow_Click);
+            this.pmndbInsert.Name = "pmndbInsert";
+            this.pmndbInsert.Size = new System.Drawing.Size(210, 24);
+            this.pmndbInsert.Text = "DB Insert";
+            this.pmndbInsert.Click += new System.EventHandler(this.pmndbInsert_Click);
             // 
             // tbInput
             // 
             this.tbInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbInput.ContextMenuStrip = this.mnPopUp2;
-            this.tbInput.Location = new System.Drawing.Point(3, 3);
+            this.tbInput.ContextMenuStrip = this.mnPopUpSQL;
+            this.tbInput.Location = new System.Drawing.Point(0, 0);
             this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
             this.tbInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbInput.Size = new System.Drawing.Size(722, 178);
+            this.tbInput.Size = new System.Drawing.Size(744, 189);
             this.tbInput.TabIndex = 3;
+            this.tbInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInput_KeyDown);
             // 
-            // mnPopUp2
+            // mnPopUpSQL
             // 
-            this.mnPopUp2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.mnPopUp2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.text1ToolStripMenuItem,
-            this.text2ToolStripMenuItem});
-            this.mnPopUp2.Name = "mnPopUp2";
-            this.mnPopUp2.Size = new System.Drawing.Size(115, 52);
+            this.mnPopUpSQL.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnPopUpSQL.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.executeSelectedToolStripMenuItem});
+            this.mnPopUpSQL.Name = "mnPopUp2";
+            this.mnPopUpSQL.Size = new System.Drawing.Size(131, 28);
             // 
-            // text1ToolStripMenuItem
+            // executeSelectedToolStripMenuItem
             // 
-            this.text1ToolStripMenuItem.Name = "text1ToolStripMenuItem";
-            this.text1ToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
-            this.text1ToolStripMenuItem.Text = "Text1";
-            // 
-            // text2ToolStripMenuItem
-            // 
-            this.text2ToolStripMenuItem.Name = "text2ToolStripMenuItem";
-            this.text2ToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
-            this.text2ToolStripMenuItem.Text = "Text2";
+            this.executeSelectedToolStripMenuItem.Name = "executeSelectedToolStripMenuItem";
+            this.executeSelectedToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.executeSelectedToolStripMenuItem.Text = "Execute";
+            this.executeSelectedToolStripMenuItem.Click += new System.EventHandler(this.executeSelectedToolStripMenuItem_Click);
             // 
             // openFileDialog
             // 
@@ -197,8 +170,8 @@ namespace myDB
             // 
             this.splitContainer1.Panel2.Controls.Add(this.statusStrip1);
             this.splitContainer1.Panel2.Controls.Add(this.dbGrid);
-            this.splitContainer1.Size = new System.Drawing.Size(728, 407);
-            this.splitContainer1.SplitterDistance = 184;
+            this.splitContainer1.Size = new System.Drawing.Size(744, 426);
+            this.splitContainer1.SplitterDistance = 192;
             this.splitContainer1.TabIndex = 4;
             // 
             // statusStrip1
@@ -207,9 +180,9 @@ namespace myDB
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sbLabel1,
             this.sbLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 193);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 204);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(728, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(744, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -218,57 +191,6 @@ namespace myDB
             this.sbLabel1.Name = "sbLabel1";
             this.sbLabel1.Size = new System.Drawing.Size(68, 20);
             this.sbLabel1.Text = "sbLabel1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnNew,
-            this.mnOpenF,
-            this.mnMigration,
-            this.mnSave,
-            this.mnSaveAs,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // mnNew
-            // 
-            this.mnNew.Name = "mnNew";
-            this.mnNew.Size = new System.Drawing.Size(224, 26);
-            this.mnNew.Text = "New";
-            // 
-            // mnOpenF
-            // 
-            this.mnOpenF.Name = "mnOpenF";
-            this.mnOpenF.Size = new System.Drawing.Size(224, 26);
-            this.mnOpenF.Text = "Open";
-            this.mnOpenF.Click += new System.EventHandler(this.mnOpenF_Click);
-            // 
-            // mnMigration
-            // 
-            this.mnMigration.Name = "mnMigration";
-            this.mnMigration.Size = new System.Drawing.Size(224, 26);
-            this.mnMigration.Text = "Migration";
-            this.mnMigration.Click += new System.EventHandler(this.mnMigration_Click);
-            // 
-            // mnSave
-            // 
-            this.mnSave.Name = "mnSave";
-            this.mnSave.Size = new System.Drawing.Size(224, 26);
-            this.mnSave.Text = "Save";
-            // 
-            // mnSaveAs
-            // 
-            this.mnSaveAs.Name = "mnSaveAs";
-            this.mnSaveAs.Size = new System.Drawing.Size(224, 26);
-            this.mnSaveAs.Text = "Save As ";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
             // 
             // sbLabel2
             // 
@@ -280,23 +202,121 @@ namespace myDB
             this.sbLabel2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.sbLabel2.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.sbLabel2_DropDownItemClicked);
             // 
+            // mainMenu
+            // 
+            this.mainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.sQLToolStripMenuItem});
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(745, 28);
+            this.mainMenu.TabIndex = 5;
+            this.mainMenu.Text = "mainMenu";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnNew,
+            this.mnOpenF,
+            this.mnMigration,
+            this.mnSave,
+            this.mnSaveAs,
+            this.mnExit});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // mnNew
+            // 
+            this.mnNew.Name = "mnNew";
+            this.mnNew.Size = new System.Drawing.Size(159, 26);
+            this.mnNew.Text = "New";
+            // 
+            // mnOpenF
+            // 
+            this.mnOpenF.Name = "mnOpenF";
+            this.mnOpenF.Size = new System.Drawing.Size(159, 26);
+            this.mnOpenF.Text = "Open";
+            this.mnOpenF.Click += new System.EventHandler(this.mnOpenF_Click_1);
+            // 
+            // mnMigration
+            // 
+            this.mnMigration.Name = "mnMigration";
+            this.mnMigration.Size = new System.Drawing.Size(159, 26);
+            this.mnMigration.Text = "Migration";
+            this.mnMigration.Click += new System.EventHandler(this.mnMigration_Click_1);
+            // 
+            // mnSave
+            // 
+            this.mnSave.Name = "mnSave";
+            this.mnSave.Size = new System.Drawing.Size(159, 26);
+            this.mnSave.Text = "Save ";
+            // 
+            // mnSaveAs
+            // 
+            this.mnSaveAs.Name = "mnSaveAs";
+            this.mnSaveAs.Size = new System.Drawing.Size(159, 26);
+            this.mnSaveAs.Text = "Save As";
+            // 
+            // mnExit
+            // 
+            this.mnExit.Name = "mnExit";
+            this.mnExit.Size = new System.Drawing.Size(159, 26);
+            this.mnExit.Text = "Exit";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addRowToolStripMenuItem1,
+            this.addColumnToolStripMenuItem1});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // addRowToolStripMenuItem1
+            // 
+            this.addRowToolStripMenuItem1.Name = "addRowToolStripMenuItem1";
+            this.addRowToolStripMenuItem1.Size = new System.Drawing.Size(179, 26);
+            this.addRowToolStripMenuItem1.Text = "Add Row";
+            // 
+            // addColumnToolStripMenuItem1
+            // 
+            this.addColumnToolStripMenuItem1.Name = "addColumnToolStripMenuItem1";
+            this.addColumnToolStripMenuItem1.Size = new System.Drawing.Size(179, 26);
+            this.addColumnToolStripMenuItem1.Text = "Add Column";
+            // 
+            // sQLToolStripMenuItem
+            // 
+            this.sQLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnSqlExecute});
+            this.sQLToolStripMenuItem.Name = "sQLToolStripMenuItem";
+            this.sQLToolStripMenuItem.Size = new System.Drawing.Size(50, 24);
+            this.sQLToolStripMenuItem.Text = "SQL";
+            // 
+            // mnSqlExecute
+            // 
+            this.mnSqlExecute.Name = "mnSqlExecute";
+            this.mnSqlExecute.Size = new System.Drawing.Size(144, 26);
+            this.mnSqlExecute.Text = "Execute";
+            this.mnSqlExecute.Click += new System.EventHandler(this.mnSqlExecute_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 439);
+            this.ClientSize = new System.Drawing.Size(745, 458);
+            this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.mnMain);
-            this.MainMenuStrip = this.mnMain;
+            this.MainMenuStrip = this.mainMenu;
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dbGrid)).EndInit();
-            this.mnPopUp.ResumeLayout(false);
-            this.mnMain.ResumeLayout(false);
-            this.mnMain.PerformLayout();
-            this.mnPopUp2.ResumeLayout(false);
+            this.mnPopUpGrid.ResumeLayout(false);
+            this.mnPopUpSQL.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -305,6 +325,8 @@ namespace myDB
             this.splitContainer1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,29 +335,32 @@ namespace myDB
         #endregion
 
         private System.Windows.Forms.DataGridView dbGrid;
-        private System.Windows.Forms.MenuStrip mnMain;
         private System.Windows.Forms.TextBox tbInput;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnAddColumn;
-        private System.Windows.Forms.ToolStripMenuItem mnAddRow;
-        private System.Windows.Forms.ContextMenuStrip mnPopUp;
-        private System.Windows.Forms.ToolStripMenuItem pmnAddColumn;
-        private System.Windows.Forms.ToolStripMenuItem pmnAddRow;
-        private System.Windows.Forms.ContextMenuStrip mnPopUp2;
-        private System.Windows.Forms.ToolStripMenuItem text1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem text2ToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip mnPopUpGrid;
+        private System.Windows.Forms.ContextMenuStrip mnPopUpSQL;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel sbLabel1;
+        private System.Windows.Forms.ToolStripDropDownButton sbLabel2;
+        private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnNew;
         private System.Windows.Forms.ToolStripMenuItem mnOpenF;
         private System.Windows.Forms.ToolStripMenuItem mnMigration;
         private System.Windows.Forms.ToolStripMenuItem mnSave;
         private System.Windows.Forms.ToolStripMenuItem mnSaveAs;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton sbLabel2;
+        private System.Windows.Forms.ToolStripMenuItem mnExit;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sQLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnSqlExecute;
+        private System.Windows.Forms.ToolStripMenuItem executeSelectedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addRowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addColumnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pmndbUpdate;
+        private System.Windows.Forms.ToolStripMenuItem addRowToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem addColumnToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem pmndbInsert;
     }
 }
 

@@ -67,50 +67,81 @@ namespace myDB
             mnAddRow_Click(sender, e);
         }
 
-        private void mnMigration_Click(object sender, EventArgs e)
+
+        private void sbLabel2_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            sbLabel2.Text = e.ClickedItem.Text; 
+            string sql = $"select * from {e.ClickedItem.Text}";
+            RunSql(sql);
             
-            openFileDialog.FilterIndex = 1; //모든 파일(*.*)
-            //요걸로 중괄호를 방지할 수 있다
-            if (openFileDialog.ShowDialog() == DialogResult.Cancel) return;
-
-            //StreamReader에 인코딩 박아줘야됨
-            StreamReader sr = new StreamReader(openFileDialog.FileName, Encoding.Default, true); //new 생성자 호출
-            //filePath = openFileDialog.FileName;
-            string firstLine = sr.ReadLine();
-            string[] fArr = firstLine.Split(',');
-            foreach (string str in fArr)
-                dbGrid.Columns.Add(str, str);
-            //tbInput.Text = oneline;
-            string oneLine = sr.ReadLine();
-            int rowIdx = 0;
-            while (oneLine != null)
-            {
-                string[] oArr = oneLine.Split(',');
-                dbGrid.Rows.Add(oArr); //array를 입력값으로 받을 수 있음
-
-                //for (int i = 0; i < oArr.Length; i++)
-                //    dbGrid.Rows[rowIdx].Cells[i].Value = oArr[i];
-
-                oneLine = sr.ReadLine(); rowIdx++;
-            }
-
-            //dbGrid.Rows.RemoveAt(j-1);
-
-            //dbGrid.Rows[1].Cells[5].Value = ""; //아무 값이나 대입 가능
-            //dbGrid.Rows[1].Cells[5].Value.ToString(); //Object 타입이라 형변환 해야지 반환 가능
-            sr.Close(); //파일 종료
         }
+
+        char[] wsArr = { ' ', '\t', '\r', '\n' }; //white space array
+        public int RunSql(string sql) // SQL 명령어 처리기
+        {
+            try
+            {
+                sqlCmd.CommandText = sql;
+                //string.Trim()으로 string 전후의 whitespace 제거
+                string sCmd = sql.Trim().Substring(0, 6);
+                //case sensitivity 
+                if (sCmd.ToLower() == "select")
+                {
+                    //sbLabel 에 Table 표기
+                    int n1 = sql.ToLower().IndexOf("from"); //from의 위치
+                    string s1 = sql.Substring(n1 + 4).Trim(); //from의 위치 + 4
+                    currTable = s1.Split(wsArr)[0];
+                    sbLabel2.Text = currTable;
+                    
+
+                    //sql.ToLower().
+                    SqlDataReader sdr = sqlCmd.ExecuteReader(); //모든 명령어 처리는 불가능함
+
+                    //컬럼 세팅
+                    dbGrid.Rows.Clear();
+                    dbGrid.Columns.Clear();
+                    for (int i = 0; i < sdr.FieldCount; i++)
+                    {
+                        string s = sdr.GetName(i); //get name of ith field
+                        dbGrid.Columns.Add(s, s);
+                    }
+                    //라인단위 처리
+                    for (int i = 0; sdr.Read(); i++)
+                    {
+                        int rIdx = dbGrid.Rows.Add(); //한줄 추가 + Row 번호 int로 반환
+                        for (int j = 0; j < sdr.FieldCount; j++)
+                        {
+                            object obj = sdr.GetValue(j);
+                            dbGrid.Rows[rIdx].Cells[j].Value = obj;
+                        }
+                    }
+                    sdr.Close();
+                    return 0;
+                }
+                else
+                {
+                    return sqlCmd.ExecuteNonQuery();
+
+                }
+            }
+            catch(Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+                return 1;
+            }
+            
+        }
+
 
         // C# 신기능:
         // \r과 같은 esc sequence를 무시하는 경로문자열: @""  보간문자열: $""
         SqlConnection sqlConn = new SqlConnection(); // app - db connection
         SqlCommand sqlCmd = new SqlCommand(); // 위 커넥션 기반으로 명령어 전달
         string ConnString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\phantasmist\source\repos\myDataBase.mdf;Integrated Security=True;Connect Timeout=30";
+        string currTable = "";
 
-        private void mnOpenF_Click(object sender, EventArgs e)
+        private void mnOpenF_Click_1(object sender, EventArgs e)
         {
-            
             try
             {
                 openFileDialog.ValidateNames = false;
@@ -138,28 +169,11 @@ namespace myDB
                 //sqlCmd로 SQL 명령문 전달/처리 수행
                 sqlCmd.CommandText = "select * from student";
                 SqlDataReader sdr = sqlCmd.ExecuteReader();
-                ////컬럼 세팅
-                //dbGrid.Rows.Clear();
-                //dbGrid.Columns.Clear();
-                //for (int i = 0; i < sdr.FieldCount; i++)
-                //{
-                //    string s = sdr.GetName(i); //get name of ith field
-                //    dbGrid.Columns.Add(s, s);
-                //}
-                ////라인단위 처리
-                //for (int i = 0; sdr.Read(); i++)
-                //{
-                //    int rIdx = dbGrid.Rows.Add(); //한줄 추가 + Row 번호 int로 반환
-                //    for (int j = 0; j < sdr.FieldCount; j++)
-                //    {
-                //        object obj = sdr.GetValue(j);
-                //        dbGrid.Rows[rIdx].Cells[j].Value = obj;
-                //    }
-                //}
+
                 sdr.Close();
             }
 
-            catch(Exception e1)
+            catch (Exception e1)
             {
                 MessageBox.Show(e1.Message);
             }
@@ -169,12 +183,81 @@ namespace myDB
                 openFileDialog.ValidateNames = true;
                 openFileDialog.FilterIndex = 1;
             }
-
         }
 
-        private void sbLabel2_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void mnMigration_Click_1(object sender, EventArgs e)
         {
-            sbLabel2.Text = e.ClickedItem.Text; //
+            openFileDialog.FilterIndex = 1; //모든 파일(*.*)
+            //요걸로 중괄호를 방지할 수 있다
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel) return;
+
+            //StreamReader에 인코딩 박아줘야됨
+            StreamReader sr = new StreamReader(openFileDialog.FileName, Encoding.Default, true); //new 생성자 호출
+            //filePath = openFileDialog.FileName;
+            string firstLine = sr.ReadLine();
+            string[] fArr = firstLine.Split(',');
+            foreach (string str in fArr)
+                dbGrid.Columns.Add(str, str);
+            //tbInput.Text = oneline;
+            string oneLine = sr.ReadLine();
+            int rowIdx = 0;
+            while (oneLine != null)
+            {
+                string[] oArr = oneLine.Split(',');
+                dbGrid.Rows.Add(oArr); //array를 입력값으로 받을 수 있음
+
+                oneLine = sr.ReadLine(); rowIdx++;
+            }
+
+            sr.Close(); //파일 종료
         }
+
+        private void mnSqlExecute_Click(object sender, EventArgs e)
+        {
+            string sql = tbInput.Text;
+            RunSql(sql);
+        }
+
+        private void tbInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            // shift + enter의 조건을 잘 볼 것
+            if (e.Shift && e.KeyCode == Keys.Enter)
+                mnSqlExecute_Click(sender, e);
+            // PopUp menu로 하일라이트된 문장만 실행
+            // tbInput.SelectedText;
+        }
+
+
+        private void executeSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string sql = tbInput.SelectedText;
+            RunSql(sql);
+        }
+
+
+        private void pmndbInsert_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pmndbUpdate_Click(object sender, EventArgs e)
+        { //update facility set field_name = sth where id = 0001
+            //선택된 첫번째 셀의 (x, y) 좌표값
+            int x = dbGrid.SelectedCells[0].ColumnIndex;
+            int y = dbGrid.SelectedCells[0].RowIndex;
+            string s1 = dbGrid.Columns[x].HeaderText; //Field 명
+            object s2 = dbGrid.SelectedCells[0].Value; //값
+            string o1 = dbGrid.Columns[0].HeaderText; //Field 명
+            object o2 = dbGrid.Rows[y].Cells[0].Value; //값
+            string sq1 = $"update {currTable} set {s1}={s2} where {o1}={o2}";
+            RunSql(sq1);
+        }
+
+
+        
+        //add rows, columns 를 
+        // insert into table values 000003 
+
+
     }
 }
